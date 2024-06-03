@@ -3,12 +3,11 @@ function* fibonacciGenerator(startIndex = 0, endIndex = Infinity) {
   const cache = {};
 
   // Closure to store the state of the sequence (previous two numbers)
-  function fibonacci(n, prevPrev = 0, prev = 1) {
-    if (n < startIndex) return;
-    if (n === startIndex) return prevPrev;
+  function fibonacci(n) {
+    if (n <= 1) return n;
     if (n in cache) return cache[n];
 
-    const result = fibonacci(n - 1, prev, prev + prevPrev);
+    const result = fibonacci(n - 1) + fibonacci(n - 2);
     cache[n] = result;
     return result;
   }
